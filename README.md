@@ -39,7 +39,8 @@ Para verificar la versión instalada ingresa a la terminal y escribe:
 ```bash
 python3 --version
 ```
-
+si no la tienes instalada peudes ingresar a : 
+https://www.python.org/downloads/
 ---
 
 ## Instalación
