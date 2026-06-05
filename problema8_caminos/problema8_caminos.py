@@ -1,3 +1,10 @@
+import math
+
+# ─────────────────────────────────────────────
+# 1. DESCRIPCIÓN Y DOCUMENTACIÓN
+# ─────────────────────────────────────────────
+def mostrar_descripcion():
+    print(
 """
 =============================================================
 PROBLEMA 8: Caminos Mínimos en una Grilla Rectangular
@@ -43,13 +50,10 @@ EFICIENCIA:
     - Programación dinámica para puntos bloqueados: O(a*b) tiempo y espacio.
     - Para grillas muy grandes con puntos bloqueados, la DP es la única opción.
 =============================================================
-"""
-
-import math
-
+""")
 
 # ─────────────────────────────────────────────
-# 1. VALIDACIÓN DE ENTRADAS
+# 2. VALIDACIÓN DE ENTRADAS
 # ─────────────────────────────────────────────
 
 def validar_coordenadas(a, b, nombre_a="a", nombre_b="b") -> None:
@@ -60,9 +64,8 @@ def validar_coordenadas(a, b, nombre_a="a", nombre_b="b") -> None:
         raise ValueError(f"{nombre_a} y {nombre_b} deben ser no negativos. "
                          f"Se recibió {nombre_a}={a}, {nombre_b}={b}.")
 
-
 # ─────────────────────────────────────────────
-# 2. COEFICIENTE BINOMIAL (auxiliar)
+# 3. COEFICIENTE BINOMIAL 
 # ─────────────────────────────────────────────
 
 def binomial(n: int, k: int) -> int:
@@ -75,10 +78,11 @@ def binomial(n: int, k: int) -> int:
         return 0
     return math.comb(n, k)
 
+# ─────────────────────────────────────────────
+# 4. CAMINOS 
+# ─────────────────────────────────────────────
 
-# ─────────────────────────────────────────────
-# 3. CAMINOS MÍNIMOS (caso básico)
-# ─────────────────────────────────────────────
+# 4.1 CAMINOS MÍNIMOS 
 
 def caminos_minimos(a: int, b: int, mostrar_procedimiento: bool = True) -> int:
     """
@@ -110,10 +114,7 @@ def caminos_minimos(a: int, b: int, mostrar_procedimiento: bool = True) -> int:
 
     return resultado
 
-
-# ─────────────────────────────────────────────
-# 4. CAMINOS CON PUNTOS OBLIGATORIOS
-# ─────────────────────────────────────────────
+# 4.2 CAMINOS CON PUNTOS OBLIGATORIOS
 
 def caminos_con_puntos_obligatorios(
     a: int, b: int, puntos: list, mostrar_procedimiento: bool = True
@@ -163,10 +164,7 @@ def caminos_con_puntos_obligatorios(
 
     return resultado
 
-
-# ─────────────────────────────────────────────
-# 5. CAMINOS CON PUNTOS BLOQUEADOS (DP)
-# ─────────────────────────────────────────────
+# 4.3 CAMINOS CON PUNTOS BLOQUEADOS (DP)
 
 def caminos_con_bloqueados(
     a: int, b: int, bloqueados: list, mostrar_grilla: bool = True
@@ -226,6 +224,84 @@ def caminos_con_bloqueados(
 
     return dp[a][b]
 
+# ─────────────────────────────────────────────
+# 5. PRESENTACIÓN
+# ─────────────────────────────────────────────
+
+# 5.1 MOSTRAR ALGORITMO
+
+def mostrar_algoritmo():
+
+    print("""
+════════════════════════════════════════════════════
+
+ALGORITMO
+
+CASO BÁSICO
+
+1. Validar entradas.
+2. Calcular:
+
+   C(a+b,a)
+
+3. Mostrar resultado.
+
+PUNTOS OBLIGATORIOS
+
+1. Dividir el recorrido en segmentos.
+2. Calcular los caminos de cada segmento.
+3. Multiplicar resultados.
+
+PUNTOS BLOQUEADOS
+
+1. Construir tabla DP.
+2. Marcar bloqueos.
+3. Aplicar:
+
+   dp[i][j] =
+   dp[i-1][j] + dp[i][j-1]
+
+════════════════════════════════════════════════════
+""")
+    
+# 5.2 MOSTRAR EJEMPLOS
+    
+def mostrar_ejemplos():
+
+    print("\nEJEMPLO 1")
+    caminos_minimos(3, 2)
+
+    print("\nEJEMPLO 2")
+    caminos_minimos(4, 6)
+
+    print("\nEJEMPLO 3")
+    caminos_con_puntos_obligatorios(
+        4,
+        4,
+        [(2,2)]
+    )
+
+# 5.3 MOSTRAR OPCIONES
+
+def volver_o_salir():
+
+    while True:
+
+        print("\n" + "─" * 50)
+        print("1. Volver al menú principal")
+        print("0. Salir")
+        print("─" * 50)
+
+        opcion = input("Seleccione una opción: ").strip()
+
+        if opcion == "1":
+            return True
+
+        elif opcion == "0":
+            print("\nFin del programa.")
+            return False
+
+        print("\nOpción inválida.")
 
 # ─────────────────────────────────────────────
 # 6. PRUEBAS
@@ -299,92 +375,186 @@ def ejecutar_pruebas() -> None:
     print(f"  Caminos sin bloqueos: {resultado_libre}")
     print(f"  Caminos eliminados por los bloqueos: {resultado_libre - resultado_bloq}")
 
-
 # ─────────────────────────────────────────────
-# 7. MENÚ INTERACTIVO
+# 7. CALCULADORA
 # ─────────────────────────────────────────────
 
-def menu_interactivo() -> None:
-    """Permite al usuario explorar los tres modos del programa."""
-
-    print("\n" + "═"*60)
-    print("  CALCULADORA DE CAMINOS MÍNIMOS — Modo interactivo")
-    print("═"*60)
-    print("  Modos disponibles:")
-    print("  [1] Caminos básicos de (0,0) a (a,b)")
-    print("  [2] Caminos con puntos obligatorios")
-    print("  [3] Caminos con puntos bloqueados")
-    print("  [0] Salir\n")
+def menu_calculadora():
 
     while True:
-        opcion = input("  Selecciona modo [0-3]: ").strip()
+
+        print("\n" + "═"*60)
+        print("CALCULADORA DE CAMINOS MÍNIMOS")
+        print("═"*60)
+
+        print("1. Caminos básicos")
+        print("2. Caminos con puntos obligatorios")
+        print("3. Caminos con puntos bloqueados")
+        print("0. Volver al menú principal")
+
+        opcion = input("\nSeleccione una opción: ").strip()
 
         if opcion == "0":
-            break
+            return
 
         try:
-            a = int(input("  Ingresa a (pasos a la derecha): "))
-            b = int(input("  Ingresa b (pasos hacia arriba) : "))
+
+            a = int(input("Ingrese a: "))
+            b = int(input("Ingrese b: "))
+
         except ValueError:
-            print("  ✗ Entrada inválida. Ingresa enteros.\n")
+
+            print("Entrada inválida.")
             continue
 
-        if opcion == "1":
-            try:
-                r = caminos_minimos(a, b, mostrar_procedimiento=True)
-                print(f"\n  ✓ Caminos de (0,0) a ({a},{b}) = {r}\n")
-            except (ValueError, TypeError) as e:
-                print(f"  ✗ {e}\n")
+        try:
 
-        elif opcion == "2":
-            raw = input("  Puntos obligatorios como 'x1,y1 x2,y2 ...' (o Enter para ninguno): ").strip()
-            try:
-                if raw:
-                    puntos = [tuple(int(v) for v in p.split(",")) for p in raw.split()]
-                else:
-                    puntos = []
-                r = caminos_con_puntos_obligatorios(a, b, puntos, mostrar_procedimiento=True)
-                print(f"\n  ✓ Caminos pasando por {puntos} = {r}\n")
-            except Exception as e:
-                print(f"  ✗ {e}\n")
+            if opcion == "1":
 
-        elif opcion == "3":
-            raw = input("  Celdas bloqueadas como 'x1,y1 x2,y2 ...' (o Enter para ninguna): ").strip()
-            try:
-                if raw:
-                    bloqueados = [tuple(int(v) for v in p.split(",")) for p in raw.split()]
-                else:
-                    bloqueados = []
-                r = caminos_con_bloqueados(a, b, bloqueados, mostrar_grilla=True)
-                print(f"\n  ✓ Caminos evitando {bloqueados} = {r}\n")
-            except Exception as e:
-                print(f"  ✗ {e}\n")
-        else:
-            print("  ✗ Opción no válida.\n")
+                resultado = caminos_minimos(
+                    a,
+                    b,
+                    mostrar_procedimiento=True
+                )
 
+            elif opcion == "2":
+
+                raw = input(
+                    "Puntos obligatorios "
+                    "(x1,y1 x2,y2 ...): "
+                ).strip()
+
+                puntos = (
+                    [tuple(map(int, p.split(",")))
+                     for p in raw.split()]
+                    if raw else []
+                )
+
+                resultado = caminos_con_puntos_obligatorios(
+                    a,
+                    b,
+                    puntos,
+                    mostrar_procedimiento=True
+                )
+
+            elif opcion == "3":
+
+                raw = input(
+                    "Bloqueados "
+                    "(x1,y1 x2,y2 ...): "
+                ).strip()
+
+                bloqueados = (
+                    [tuple(map(int, p.split(",")))
+                     for p in raw.split()]
+                    if raw else []
+                )
+
+                resultado = caminos_con_bloqueados(
+                    a,
+                    b,
+                    bloqueados,
+                    mostrar_grilla=True
+                )
+
+            else:
+
+                print("Opción inválida.")
+                continue
+
+            print(f"\nResultado: {resultado}")
+
+            while True:
+
+                print("\n" + "─"*50)
+                print("1. Realizar otro cálculo")
+                print("2. Volver al menú principal")
+                print("0. Salir")
+                print("─"*50)
+
+                accion = input("Seleccione una opción: ")
+
+                if accion == "1":
+                    break
+
+                elif accion == "2":
+                    return
+
+                elif accion == "0":
+                    exit()
+
+                print("Opción inválida.")
+
+        except Exception as e:
+
+            print(f"\nError: {e}")
 
 # ─────────────────────────────────────────────
-# PUNTO DE ENTRADA
+# 8. MENÚ PRINCIPAL
+# ─────────────────────────────────────────────
+
+def menu_principal():
+
+    while True:
+
+        print("\n")
+        print("╔══════════════════════════════════════════════╗")
+        print("║     CAMINOS MÍNIMOS EN UNA GRILLA           ║")
+        print("╚══════════════════════════════════════════════╝")
+
+        print("1. Ver descripción matemática")
+        print("2. Ver algoritmo")
+        print("3. Ver ejemplos")
+        print("4. Ejecutar pruebas")
+        print("5. Usar calculadora")
+        print("0. Salir")
+
+        opcion = input("\nSeleccione una opción: ")
+
+        if opcion == "1":
+
+            mostrar_descripcion()
+
+            if not volver_o_salir():
+                break
+
+        elif opcion == "2":
+
+            mostrar_algoritmo()
+
+            if not volver_o_salir():
+                break
+
+        elif opcion == "3":
+
+            mostrar_ejemplos()
+
+            if not volver_o_salir():
+                break
+
+        elif opcion == "4":
+
+            ejecutar_pruebas()
+
+            if not volver_o_salir():
+                break
+
+        elif opcion == "5":
+
+            menu_calculadora()
+
+        elif opcion == "0":
+
+            print("\nFin del programa.")
+            break
+
+        else:
+
+            print("\nOpción inválida.")
+
+# ─────────────────────────────────────────────
+# 8. MAIN
 # ─────────────────────────────────────────────
 
 if __name__ == "__main__":
-    print("╔══════════════════════════════════════════════════════════╗")
-    print("║   PROBLEMA 8: Caminos Mínimos en una Grilla              ║")
-    print("║   Matemáticas Discretas I — UNAL                         ║")
-    print("╚══════════════════════════════════════════════════════════╝")
-
-    # Ejemplos con procedimiento visible
-    print("\n── Ejemplos con procedimiento ──")
-    caminos_minimos(3, 2, mostrar_procedimiento=True)
-    caminos_minimos(4, 6, mostrar_procedimiento=True)
-
-    # Suite de pruebas automáticas
-    ejecutar_pruebas()
-
-    # Modo interactivo
-    print("\n" + "═"*60)
-    respuesta = input("  ¿Deseas usar el modo interactivo? (s/n): ").strip().lower()
-    if respuesta == "s":
-        menu_interactivo()
-
-    print("\n  Fin del programa.")
+    menu_principal()

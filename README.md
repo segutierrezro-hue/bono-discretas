@@ -1,136 +1,227 @@
 # Bono de Programación — Matemáticas Discretas I
-**Universidad Nacional de Colombia**  
-Docente: Jhoan Sebastian Tenjo García — Segundo corte
+
+**Universidad Nacional de Colombia**
+**Docente:** Jhoan Sebastian Tenjo García
+**Segundo corte**
 
 ---
 
 ## Descripción
 
-Este repositorio contiene la solución a dos problemas de conteo combinatorio como parte del bono de programación del segundo corte de Matemáticas Discretas I. Cada problema está implementado como un programa general en Python que acepta parámetros variables, valida entradas y calcula resultados para distintos casos.
+Este repositorio contiene la solución de dos problemas de conteo combinatorio correspondientes al bono de programación de Matemáticas Discretas I.
+
+Cada problema fue implementado en Python como una herramienta general que:
+
+* Acepta parámetros variables.
+* Valida entradas y casos de error.
+* Explica el procedimiento matemático utilizado.
+* Incluye pruebas automáticas.
+* Permite la interacción mediante menús de consola.
 
 ---
 
 ## Problemas resueltos
 
-| # | Problema | Fórmula principal |
-|---|----------|-------------------|
-| 1 | Permutaciones y k-Permutaciones | `P(n,r) = n! / (n-r)!` |
-| 8 | Caminos Mínimos en una Grilla | `C(a+b, a) = (a+b)! / (a! × b!)` |
+| # | Problema                        | Fórmula principal         |
+| - | ------------------------------- | ------------------------- |
+| 1 | Permutaciones y k-Permutaciones | `P(n,r)=n!/(n-r)!`        |
+| 8 | Caminos Mínimos en una Grilla   | `C(a+b,a)=(a+b)!/(a!·b!)` |
 
 ---
 
 ## Requisitos
 
-- Python 3.8 o superior
-- Sin dependencias externas (solo librería estándar)
+* Python 3.8 o superior.
+* No requiere dependencias externas.
+* Utiliza únicamente la librería estándar de Python.
 
-Puedes verificar tu versión con:
+Para verificar la versión instalada ingresa a la terminal y escribe:
+
 ```bash
 python3 --version
 ```
 
 ---
 
-## Instalación y ejecución
+## Instalación
 
-### 1. Clonar el repositorio
+### Clonar el repositorio
 
+Para traer el repositorio abre la terminal y escribe lo siguiente:
 ```bash
 git clone https://github.com/TU_USUARIO/bono-discretas.git
 cd bono-discretas
 ```
 
-### 2. Ejecutar Problema 1 — Permutaciones
+Como puedes observar debes ingresar el usuario de tu github en la parte TU_USUARIO, ejemplo el mio es segutierrezro-hue y quedaría
+
+```bash
+git clone https://github.com/segutierrezro-hue/bono-discretas.git
+```
+---
+
+## Ejecución
+
+### Problema 1 — Permutaciones y k-Permutaciones
+
+Dentro de la terminal copia y pega este comando
 
 ```bash
 python3 problema1_permutaciones/problema1_permutaciones.py
 ```
 
-### 3. Ejecutar Problema 8 — Caminos Mínimos
+### Problema 8 — Caminos Mínimos en una Grilla
+
+Lo mismo ocurre con el problema 8
 
 ```bash
 python3 problema8_caminos/problema8_caminos.py
 ```
 
-Cada programa ejecuta automáticamente los ejemplos, las pruebas y al final pregunta si deseas usar el **modo interactivo** para ingresar tus propios valores.
+---
+
+## Interfaz de los programas
+
+Ambos programas presentan un menú interactivo que permite acceder a las diferentes funcionalidades sin necesidad de modificar el código.
+
+### Problema 1
+
+```text
+1. Ver descripción matemática
+2. Ver algoritmo
+3. Ver ejemplos
+4. Comparar factorial iterativo y recursivo
+5. Ejecutar pruebas
+6. Usar calculadora
+0. Salir
+```
+
+### Problema 8
+
+```text
+1. Ver descripción matemática
+2. Ver algoritmo
+3. Ver ejemplos
+4. Ejecutar pruebas
+5. Usar calculadora
+0. Salir
+```
 
 ---
 
 ## Estructura del repositorio
 
-```
+```text
 bono-discretas/
 │
-├── README.md                          ← Este archivo
-├── requirements.txt                   ← Dependencias (vacío, solo stdlib)
+├── README.md
+├── requirements.txt
 │
 ├── problema1_permutaciones/
-│   ├── problema1_permutaciones.py     ← Código principal
-│   └── ejemplos.md                    ← Ejemplos de entrada y salida
+│   ├── problema1_permutaciones.py
+│   └── ejemplos.md
 │
 └── problema8_caminos/
-    ├── problema8_caminos.py           ← Código principal
-    └── ejemplos.md                    ← Ejemplos de entrada y salida
+    ├── problema8_caminos.py
+    └── ejemplos.md
 ```
 
 ---
 
-## Resumen de cada problema
+# Problema 1 — Permutaciones y k-Permutaciones
 
-### Problema 1 — Permutaciones y k-Permutaciones
+## Objetivo
 
-**¿Qué cuenta?**  
-El número de formas de **ordenar** `r` objetos distintos tomados de un conjunto de `n` objetos distintos. El orden importa y no hay repetición.
+Calcular el número de formas de ordenar `r` elementos distintos tomados de un conjunto de `n` elementos distintos.
 
-**Fórmula:**
+### Fórmula
+
+```text
+P(n,r)=n!/(n-r)!
 ```
-P(n, r) = n! / (n - r)!
-```
 
-**Funcionalidades implementadas:**
-- Cálculo de `n!` con versión iterativa y recursiva (comparación de eficiencia)
-- Cálculo de `P(n, r)` con procedimiento paso a paso
-- Validación de entradas (`r > n`, negativos, tipos inválidos)
-- 7 pruebas automáticas + 3 casos de error validados
-- Modo interactivo
+### Funcionalidades
+
+* Factorial iterativo.
+* Factorial recursivo.
+* Comparación de eficiencia entre implementaciones.
+* Cálculo de permutaciones con procedimiento paso a paso.
+* Validación de entradas.
+* Casos especiales.
+* Pruebas automáticas.
+* Calculadora interactiva.
+
+### Ejemplos
+
+```text
+P(10,3)=720
+P(20,5)=1860480
+P(7,7)=5040
+```
 
 ---
 
-### Problema 8 — Caminos Mínimos en una Grilla
+# Problema 8 — Caminos Mínimos en una Grilla
 
-**¿Qué cuenta?**  
-El número de caminos de longitud mínima desde `(0,0)` hasta `(a,b)` en una grilla rectangular, moviéndose solo hacia la derecha (→) o hacia arriba (↑).
+## Objetivo
 
-**Fórmula:**
+Calcular la cantidad de caminos mínimos entre dos puntos de una grilla rectangular utilizando técnicas de conteo combinatorio.
+
+Se permiten únicamente movimientos:
+
+```text
+→ Derecha
+↑ Arriba
 ```
-C(a+b, a) = (a+b)! / (a! × b!)
+
+### Fórmula básica
+
+```text
+C(a+b,a)=(a+b)!/(a!·b!)
 ```
 
-**Funcionalidades implementadas:**
-- Conteo básico de caminos con procedimiento paso a paso
-- Caminos con **puntos obligatorios** intermedios
-- Caminos con **puntos bloqueados** usando programación dinámica + visualización de grilla
-- 7 pruebas automáticas + validación de errores
-- Modo interactivo con 3 modos de uso
+### Funcionalidades
+
+* Conteo básico de caminos mínimos.
+* Explicación paso a paso del procedimiento.
+* Caminos con puntos obligatorios.
+* Caminos con puntos bloqueados.
+* Programación dinámica para restricciones.
+* Visualización de grillas.
+* Validación de entradas.
+* Pruebas automáticas.
+* Calculadora interactiva.
+
+### Ejemplos
+
+```text
+(0,0) → (3,2) = 10 caminos
+
+(0,0) → (4,4)
+pasando por (2,2)
+= 36 caminos
+
+(0,0) → (3,3)
+evitando obstáculos
+= 2 caminos
+```
 
 ---
 
-## Ejemplos rápidos
+## Documentación adicional
 
-```python
-# Problema 1
-P(10, 3) = 720
-P(20, 5) = 1860480
+Cada carpeta contiene un archivo `ejemplos.md` con:
 
-# Problema 8
-Caminos de (0,0) a (3,2) = 10
-Caminos de (0,0) a (4,4) pasando por (2,2) = 36
-```
+* Casos de prueba.
+* Ejemplos de entrada y salida.
+* Validaciones.
+* Explicaciones de uso.
+* Navegación de los menús.
 
 ---
 
 ## Autor
 
-Estudiante — Matemáticas Discretas I  
-Universidad Nacional de Colombia  
-2025
+Sebastian Fernando Gutiérrez Rojas — Matemáticas Discretas I
+Universidad Nacional de Colombia
+2026

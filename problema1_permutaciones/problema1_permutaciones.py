@@ -1,3 +1,11 @@
+import math
+
+# ─────────────────────────────────────────────
+# 1. DESCRIPCIÓN Y DOCUMENTACIÓN
+# ─────────────────────────────────────────────
+
+def mostrar_descripcion():
+    print(
 """
 =============================================================
 PROBLEMA 1: Calculadora General de Permutaciones y k-Permutaciones
@@ -28,16 +36,15 @@ EFICIENCIA:
     - Factorial recursivo: O(n) en tiempo, O(n) en espacio (pila de llamadas).
     - Para n grandes se puede usar math.factorial que está optimizado en C.
     - Calcular P(n,r) directamente como n*(n-1)*...*(n-r+1) evita
-      calcular (n-r)! innecesariamente → O(r) multiplicaciones.
+    calcular (n-r)! innecesariamente → O(r) multiplicaciones.
 =============================================================
-"""
-
-import math
-
-
+""")
+    
 # ─────────────────────────────────────────────
-# 1. FACTORIAL ITERATIVO
+# 2. FUNCIONES MATEMÁTICAS
 # ─────────────────────────────────────────────
+
+# 2.1 FACTORIAL ITERATIVO
 
 def factorial_iterativo(n: int) -> int:
     """
@@ -51,10 +58,7 @@ def factorial_iterativo(n: int) -> int:
         resultado *= i
     return resultado
 
-
-# ─────────────────────────────────────────────
-# 2. FACTORIAL RECURSIVO (extensión opcional)
-# ─────────────────────────────────────────────
+# 2.2 FACTORIAL RECURSIVO 
 
 def factorial_recursivo(n: int) -> int:
     """
@@ -67,32 +71,7 @@ def factorial_recursivo(n: int) -> int:
         return 1
     return n * factorial_recursivo(n - 1)
 
-
-# ─────────────────────────────────────────────
-# 3. VALIDACIÓN DE ENTRADAS
-# ─────────────────────────────────────────────
-
-def validar_entradas(n, r) -> None:
-    """
-    Verifica que n y r sean enteros no negativos y que r <= n.
-    Lanza ValueError con mensaje descriptivo si algo falla.
-    """
-    if not isinstance(n, int) or not isinstance(r, int):
-        raise TypeError(f"n y r deben ser enteros. Se recibió n={type(n).__name__}, r={type(r).__name__}.")
-    if n < 0:
-        raise ValueError(f"n debe ser no negativo. Se recibió n={n}.")
-    if r < 0:
-        raise ValueError(f"r debe ser no negativo. Se recibió r={r}.")
-    if r > n:
-        raise ValueError(
-            f"r no puede ser mayor que n (r={r} > n={n}). "
-            f"No se pueden ordenar {r} objetos de un conjunto de solo {n}."
-        )
-
-
-# ─────────────────────────────────────────────
-# 4. CÁLCULO DE P(n, r)
-# ─────────────────────────────────────────────
+# 2.3 CÁLCULO DE P(n, r)
 
 def permutacion(n: int, r: int, mostrar_procedimiento: bool = True) -> int:
     """
@@ -123,10 +102,32 @@ def permutacion(n: int, r: int, mostrar_procedimiento: bool = True) -> int:
 
     return resultado
 
+# ─────────────────────────────────────────────
+# 3. VALIDACIÓN
+# ─────────────────────────────────────────────
+
+def validar_entradas(n, r) -> None:
+    """
+    Verifica que n y r sean enteros no negativos y que r <= n.
+    Lanza ValueError con mensaje descriptivo si algo falla.
+    """
+    if not isinstance(n, int) or not isinstance(r, int):
+        raise TypeError(f"n y r deben ser enteros. Se recibió n={type(n).__name__}, r={type(r).__name__}.")
+    if n < 0:
+        raise ValueError(f"n debe ser no negativo. Se recibió n={n}.")
+    if r < 0:
+        raise ValueError(f"r debe ser no negativo. Se recibió r={r}.")
+    if r > n:
+        raise ValueError(
+            f"r no puede ser mayor que n (r={r} > n={n}). "
+            f"No se pueden ordenar {r} objetos de un conjunto de solo {n}."
+        )
 
 # ─────────────────────────────────────────────
-# 5. COMPARACIÓN ITERATIVO vs RECURSIVO
+# 4. PRESENTACIÓN
 # ─────────────────────────────────────────────
+
+# 4.1 COMPARACIÓN ITERATIVO vs RECURSIVO
 
 def comparar_implementaciones(n: int) -> None:
     """
@@ -146,9 +147,64 @@ def comparar_implementaciones(n: int) -> None:
     print(f"  La versión iterativa usa O(1) de espacio adicional.")
     print(f"  La recursiva usa O({n}) de espacio en la pila de llamadas.")
 
+# 4.2 MOSTRAR ALGORITMO
+
+def mostrar_algoritmo():
+    print("""
+════════════════════════════════════════════════════
+
+ALGORITMO
+
+1. Validar entradas.
+2. Verificar que r <= n.
+3. Calcular:
+
+   P(n,r)=n!/(n-r)!
+
+4. Mostrar resultado.
+
+Complejidad:
+- O(r) usando producto directo.
+
+════════════════════════════════════════════════════
+""")
+    
+# 4.3 MOSTRAR EJEMPLOS
+
+def mostrar_ejemplos():
+
+    print("\nEjemplo 1")
+    permutacion(10, 3)
+
+    print("\nEjemplo 2")
+    permutacion(20, 5)
+
+# 4.4 MOSTRAR OPCIONES
+
+def volver_o_salir():
+    """
+    Permite regresar al menú principal o salir del programa.
+    """
+    while True:
+
+        print("\n" + "─" * 50)
+        print("1. Volver al menú principal")
+        print("0. Salir")
+        print("─" * 50)
+
+        opcion = input("Seleccione una opción: ").strip()
+
+        if opcion == "1":
+            return True
+
+        elif opcion == "0":
+            print("\nFin del programa.")
+            return False
+
+        print("\nOpción inválida.")
 
 # ─────────────────────────────────────────────
-# 6. PRUEBAS
+# 5. PRUEBAS
 # ─────────────────────────────────────────────
 
 def ejecutar_pruebas() -> None:
@@ -185,7 +241,7 @@ def ejecutar_pruebas() -> None:
 
     print(f"\n  Resultado: {aprobadas}/{len(casos)} pruebas aprobadas.")
 
-    # Casos especiales / errores esperados
+    # Casos especiales o errores esperados
     print("\n" + "─"*60)
     print("  VALIDACIÓN DE CASOS ESPECIALES (errores esperados)")
     print("─"*60)
@@ -205,62 +261,143 @@ def ejecutar_pruebas() -> None:
 
 
 # ─────────────────────────────────────────────
-# 7. PROGRAMA PRINCIPAL (interfaz de usuario)
+# 6. CALCULADORA
 # ─────────────────────────────────────────────
 
-def menu_interactivo() -> None:
-    """
-    Permite al usuario calcular P(n, r) de forma interactiva.
-    """
-    print("\n" + "═"*60)
-    print("  CALCULADORA DE PERMUTACIONES — Modo interactivo")
-    print("═"*60)
-    print("  Calcula P(n, r) = n! / (n-r)!")
-    print("  Escribe 'salir' para terminar.\n")
+def menu_calculadora():
 
     while True:
-        entrada_n = input("  Ingresa n (tamaño del conjunto): ").strip()
-        if entrada_n.lower() == "salir":
-            break
-        entrada_r = input("  Ingresa r (objetos a ordenar): ").strip()
-        if entrada_r.lower() == "salir":
-            break
 
-        try:
-            n = int(entrada_n)
-            r = int(entrada_r)
-            resultado = permutacion(n, r, mostrar_procedimiento=True)
-            print(f"\n  ✓ P({n}, {r}) = {resultado}\n")
-        except (ValueError, TypeError) as e:
-            print(f"\n  ✗ Entrada inválida: {e}\n")
+        print("\n" + "═"*60)
+        print("CALCULADORA DE PERMUTACIONES")
+        print("═"*60)
+        print("1. Calcular P(n,r)")
+        print("0. Volver al menú principal")
 
+        opcion = input("\nSeleccione una opción: ")
+
+        if opcion == "0":
+            return
+
+        elif opcion == "1":
+
+            try:
+
+                n = int(input("Ingrese n: "))
+                r = int(input("Ingrese r: "))
+
+                resultado = permutacion(
+                    n,
+                    r,
+                    mostrar_procedimiento=True
+                )
+
+                print(f"\nResultado: {resultado}")
+
+                while True:
+
+                    print("\n" + "─"*50)
+                    print("1. Realizar otro cálculo")
+                    print("2. Volver al menú principal")
+                    print("0. Salir")
+                    print("─"*50)
+
+                    accion = input("Seleccione una opción: ")
+
+                    if accion == "1":
+                        break
+
+                    elif accion == "2":
+                        return
+
+                    elif accion == "0":
+                        exit()
+
+                    print("Opción inválida.")
+
+            except Exception as e:
+
+                print(f"\nError: {e}")
+
+        else:
+
+            print("\nOpción inválida.")
 
 # ─────────────────────────────────────────────
-# PUNTO DE ENTRADA
+# 7. MENÚ PRINCIPAL
+# ─────────────────────────────────────────────
+
+def menu_principal():
+
+    while True:
+
+        print("\n")
+        print("╔══════════════════════════════════════════════╗")
+        print("║    PERMUTACIONES Y k-PERMUTACIONES           ║")
+        print("╚══════════════════════════════════════════════╝")
+
+        print("1. Ver descripción matemática")
+        print("2. Ver algoritmo")
+        print("3. Ver ejemplos")
+        print("4. Comparar factorial iterativo y recursivo")
+        print("5. Ejecutar pruebas")
+        print("6. Usar calculadora")
+        print("0. Salir")
+
+        opcion = input("\nSeleccione una opción: ")
+
+        if opcion == "1":
+
+            mostrar_descripcion()
+
+            if not volver_o_salir():
+                break
+
+        elif opcion == "2":
+
+            mostrar_algoritmo()
+
+            if not volver_o_salir():
+                break
+
+        elif opcion == "3":
+
+            mostrar_ejemplos()
+
+            if not volver_o_salir():
+                break
+
+        elif opcion == "4":
+
+            comparar_implementaciones(10)
+            comparar_implementaciones(15)
+
+            if not volver_o_salir():
+                break
+
+        elif opcion == "5":
+
+            ejecutar_pruebas()
+
+            if not volver_o_salir():
+                break
+
+        elif opcion == "6":
+
+            menu_calculadora()
+
+        elif opcion == "0":
+
+            print("\nFin del programa.")
+            break
+
+        else:
+
+            print("\nOpción inválida.")
+
+# ─────────────────────────────────────────────
+# 8. MAIN
 # ─────────────────────────────────────────────
 
 if __name__ == "__main__":
-    print("╔══════════════════════════════════════════════════════════╗")
-    print("║   PROBLEMA 1: Permutaciones y k-Permutaciones            ║")
-    print("║   Matemáticas Discretas I — UNAL                         ║")
-    print("╚══════════════════════════════════════════════════════════╝")
-
-    # Mostrar ejemplos del enunciado con procedimiento
-    print("\n── Ejemplos del enunciado (con procedimiento) ──")
-    permutacion(10, 3, mostrar_procedimiento=True)
-    permutacion(20, 5, mostrar_procedimiento=True)
-
-    # Comparar factorial iterativo vs recursivo
-    comparar_implementaciones(10)
-    comparar_implementaciones(15)
-
-    # Suite de pruebas automáticas
-    ejecutar_pruebas()
-
-    # Modo interactivo
-    print("\n" + "═"*60)
-    respuesta = input("  ¿Deseas usar el modo interactivo? (s/n): ").strip().lower()
-    if respuesta == "s":
-        menu_interactivo()
-
-    print("\n  Fin del programa.")
+    menu_principal()
