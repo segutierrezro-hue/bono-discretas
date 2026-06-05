@@ -118,7 +118,8 @@ También observarás un menú que muestra:
 ──────────────────────────────────────────────────
 Seleccione una opción:
 ```
-En donde dice seleccone una opción tiene la posibilidad de regrasar al menú principal con 1, o ingresar 0 para salir del programa y probar otro problema
+En donde dice seleccone una opción tiene la posibilidad de regrasar al menú principal con 1, o ingresar 0 para salir del programa y probar otro problema,
+También cuentas con la posibilidad de observar los ejemplos.md donde se explica que varaibles se reciben y como se interpretan los resultados dentro de las calculadoras de los programas.
 ---
 
 ## Estructura del repositorio
