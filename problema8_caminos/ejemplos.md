@@ -20,7 +20,7 @@ Al iniciar el programa se muestra:
 
 ```text
 ╔══════════════════════════════════════════════╗
-║     CAMINOS MÍNIMOS EN UNA GRILLA           ║
+║     CAMINOS MÍNIMOS EN UNA GRILLA            ║
 ╚══════════════════════════════════════════════╝
 
 1. Ver descripción matemática
