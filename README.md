@@ -51,9 +51,11 @@ https://www.python.org/downloads/
 Para traer el repositorio abre la terminal y escribe lo siguiente:
 ```bash
 git clone https://github.com/TU_USUARIO/bono-discretas.git
+```
+y luego 
+```bash
 cd bono-discretas
 ```
-
 Como puedes observar debes ingresar el usuario de tu github en la parte TU_USUARIO, ejemplo el mio es segutierrezro-hue y quedaría
 
 ```bash
