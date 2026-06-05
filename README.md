@@ -109,7 +109,16 @@ Necesitas ingresar el número al que deseas ingresar y dar enter
 5. Usar calculadora
 0. Salir
 ```
+También observarás un menú que muestra:
 
+```text
+──────────────────────────────────────────────────
+1. Volver al menú principal
+0. Salir
+──────────────────────────────────────────────────
+Seleccione una opción:
+```
+En donde dice seleccone una opción tiene la posibilidad de regrasar al menú principal con 1, o ingresar 0 para salir del programa y probar otro problema
 ---
 
 ## Estructura del repositorio
