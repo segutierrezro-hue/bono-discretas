@@ -2,7 +2,6 @@
 
 **Universidad Nacional de Colombia**
 **Docente:** Jhoan Sebastian Tenjo García
-**Segundo corte**
 
 ---
 
