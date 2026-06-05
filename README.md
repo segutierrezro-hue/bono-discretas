@@ -86,7 +86,7 @@ python3 problema8_caminos/problema8_caminos.py
 ## Interfaz de los programas
 
 Ambos programas presentan un menú interactivo que permite acceder a las diferentes funcionalidades sin necesidad de modificar el código.
-
+Necesitas ingresar el número al que deseas ingresar y dar enter
 ### Problema 1
 
 ```text
