@@ -67,7 +67,7 @@ git clone https://github.com/segutierrezro-hue/bono-discretas.git
 
 ### Problema 1 — Permutaciones y k-Permutaciones
 
-Dentro de la terminal copia y pega este comando
+Para ejecutar el programa del problema 1, ve dentro de la terminal, copia este comando y pegalo en la terminal
 
 ```bash
 python3 problema1_permutaciones/problema1_permutaciones.py
